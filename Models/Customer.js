@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const {Subscription, validateSubscription} = require('./Subscription');
 
 
 const customerSchema = new mongoose.Schema({
@@ -8,9 +7,18 @@ const customerSchema = new mongoose.Schema({
     password: {type:String, required: true},
     credit: {type:Number, required: true},
     invoicesCount: {type:Number, default: 0},
-    payedAmount: {type:Number, default: 0}
+    subscriptionsCount: {type:Number, default: 0},
+    subscriptionIDs:[String],
+    payedAmount: {type:Number, default: 0},
+
 }
 );
+
+customerSchema.method("add", function(id){
+    this.subscriptionIDs[this.subscriptionsCount] = id;
+    this.subscriptionsCount++;
+    return id;
+});
 
 function validateCustomer(customer){
     const schema = Joi.object({
@@ -19,7 +27,7 @@ function validateCustomer(customer){
     return schema.validate();
 }
 
-
-module.exports.Customer = mongoose.model('Customer', customerSchema);
+Customer = mongoose.model('Customer', customerSchema);
+module.exports.Customer = Customer;
 module.exports.validateCustomer = validateCustomer;
 

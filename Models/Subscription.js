@@ -3,11 +3,19 @@ const Joi = require('joi');
 
 
 const subscriptionSchema = new mongoose.Schema({
-    name: {type:String, required: true, unique: true, minlength: 5, maxlenght: 50},
+    name: {type:String, required: true, unique: true, maxlenght: 50},
     price: {type:Number, required: true},
-    startDate: {type:Date, default: Date.now}
+    startDate: {type:Date, default: Date.now},
+    availability: {type: Boolean, default: false}
 }
 );
+
+subscriptionSchema.method("sendInvoice", function(){
+    if(this.availability){
+        setInterval(function(){console.log("invoooice")},2000);
+    }
+});
+
 
 function validateSubscription(subscription){
     const schema = Joi.object({

@@ -4,6 +4,8 @@ const config = require('config');
 
 const createCustomerRoute = require('./Routes/createCustomer');
 const loginRoute = require('./Routes/login');
+const SubscribeRoute = require('./Routes/Subscribe');
+
 
 // if(!config.get('jwtPrivateKey')){
 //     console.error('FATAL ERROR: jwtPrivateKey is not defined');
@@ -20,6 +22,8 @@ app.use(express.json());
 
 app.use('/api', createCustomerRoute);
 app.use('/api', loginRoute);
+app.use('/api', SubscribeRoute);
+
 
 
 const port = process.env.port || 3000;
