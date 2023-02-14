@@ -16,7 +16,9 @@ router.post('/subscribe/:subscriptionName', auth, async (req, res) => {
     subscription.startDate = Date.now();
     console.log(logedInCustomer);
     await logedInCustomer.save();
+
     subscription.sendInvoice();
+    
     await subscription.save();
     res.send(logedInCustomer);
 });

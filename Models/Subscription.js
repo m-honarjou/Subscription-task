@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+const {Invoice} = require('./Invoice');
+
 
 const subscriptionSchema = new mongoose.Schema({
     name: {type:String, required: true, unique: true, maxlenght: 50},
@@ -9,10 +11,35 @@ const subscriptionSchema = new mongoose.Schema({
     availability: {type: Boolean, default: false}
 }
 );
+const timeInterval = 3000;
+const createInvoice = async function(sunbscriptionName, sunbscriptionprice, timeInterval){
+    const starttime = Date.now() - timeInterval;
+    const newInvoice = new Invoice({
+        name: sunbscriptionName,
+        cost: sunbscriptionprice,
+        startDate: starttime
+    });
+
+    try{
+        await newInvoice.save();
+    }
+    catch(err){
+       console.error(err);
+    }
+    const invoiceText = newInvoice.getInvoice();
+    console.log(invoiceText);
+    // return newInvoice;
+
+}
 
 subscriptionSchema.method("sendInvoice", function(){
+    const name = this.name;
+    const cost = this.price;
+
     if(this.availability){
-        setInterval(function(){console.log("invoooice")},2000);
+        setInterval(function(){
+            createInvoice(name, cost, timeInterval);
+        },timeInterval);
     }
 });
 
