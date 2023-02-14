@@ -10,10 +10,10 @@ const customerSchema = new mongoose.Schema({
     invoicesCount: {type:Number, default: 0},
     subscriptionsCount: {type:Number, default: 0},
     // subscriptionIDs:[String],
-    subscriptions: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Subscription'
-    },
+    // subscriptions: {
+    //     type: [mongoose.Schema.Types.ObjectId],
+    //     ref: 'Subscription'
+    // },
     payedAmount: {type:Number, default: 0},
 
 }
@@ -33,7 +33,7 @@ customerSchema.method("add", function(id){
 
     //     }
     // });
-    this.subscriptions[this.subscriptionsCount] = id;
+    // this.subscriptions[this.subscriptionsCount] = id;
     this.subscriptionsCount++;
     return id;
 });
@@ -48,11 +48,9 @@ customerSchema.method("list", function(id){
 //     this.subscriptionsCount++;
 //     return id;
 // });
-// customerSchema.method("remove", function(id){
-//     this.subscriptionIDs.;
-//     this.subscriptionsCount--;
-//     return id;
-// });
+customerSchema.method("remove", function(){
+    this.subscriptionsCount--;
+});
 
 
 function validateCustomer(customer){

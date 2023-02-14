@@ -36,6 +36,7 @@ subscriptionSchema.method("sendInvoice", function(){
     if(this.availability){
         setInterval(function(){
             createInvoice(name, cost, timeInterval);
+            
         },timeInterval);
     }
 });
