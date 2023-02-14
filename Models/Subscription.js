@@ -13,11 +13,10 @@ const subscriptionSchema = new mongoose.Schema({
 );
 const timeInterval = 3000;
 const createInvoice = async function(sunbscriptionName, sunbscriptionprice, timeInterval){
-    const starttime = Date.now() - timeInterval;
     const newInvoice = new Invoice({
         name: sunbscriptionName,
         cost: sunbscriptionprice,
-        startDate: starttime
+        startDate: Date.now() - timeInterval
     });
 
     try{
@@ -28,8 +27,6 @@ const createInvoice = async function(sunbscriptionName, sunbscriptionprice, time
     }
     const invoiceText = newInvoice.getInvoice();
     console.log(invoiceText);
-    // return newInvoice;
-
 }
 
 subscriptionSchema.method("sendInvoice", function(){
