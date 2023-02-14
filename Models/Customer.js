@@ -9,31 +9,12 @@ const customerSchema = new mongoose.Schema({
     credit: {type:Number, required: true},
     invoicesCount: {type:Number, default: 0},
     subscriptionsCount: {type:Number, default: 0},
-    // subscriptionIDs:[String],
-    // subscriptions: {
-    //     type: [mongoose.Schema.Types.ObjectId],
-    //     ref: 'Subscription'
-    // },
     payedAmount: {type:Number, default: 0},
 
 }
 );
 customerSchema.method("add", function(id){
-    // if(this.subscriptions.find(sub => {sub === id})){
-    //     // return new Error("Already Subscribed");
-    //     console.log('ereo');
-    // }
-    // function check(ids){
-    //     return true;
-    // }
-    // this.subscriptions.forEach(element => {
-    //     if(element == id){
-    //         return new Error("Already Subscribed"); 
-    //         process.exit(1);
 
-    //     }
-    // });
-    // this.subscriptions[this.subscriptionsCount] = id;
     this.subscriptionsCount++;
     return id;
 });
@@ -43,11 +24,6 @@ customerSchema.method("list", function(id){
     return this.subscriptions;
 });
 
-// customerSchema.method("add", function(id){
-//     this.subscriptionIDs[this.subscriptionsCount] = id;
-//     this.subscriptionsCount++;
-//     return id;
-// });
 customerSchema.method("remove", function(){
     this.subscriptionsCount--;
 });
