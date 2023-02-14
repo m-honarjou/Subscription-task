@@ -11,7 +11,7 @@ const invoiceSchema = new mongoose.Schema({
 );
 
 invoiceSchema.method("getInvoice", function(){
-    return `${this.name} Invoice\nPrice: ${this.cost}\nStrat Time: ${this.startDate}\nFinish Time: ${this.finishDate}`
+    return `${this.name} Invoice\nPrice: ${this.cost}\nStart Time: ${this.startDate}\nFinish Time: ${this.finishDate}`
 });
 
 
