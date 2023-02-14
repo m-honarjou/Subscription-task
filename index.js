@@ -7,7 +7,7 @@ const loginRoute = require('./Routes/login');
 const SubscribeRoute = require('./Routes/subscribe');
 const UnSubscribeRoute = require('./Routes/unsubscribe');
 const ListSubscriptoinRoute = require('./Routes/list-subscriptions');
-const ListInvoicesRoute = require('./Routes/list-invoices');
+const InvoicesRoute = require('./Routes/invoices');
 
 
 
@@ -30,7 +30,7 @@ app.use('/api', loginRoute);
 app.use('/api/subscribe', SubscribeRoute);
 app.use('/api/unsubscribe', UnSubscribeRoute);
 app.use('/api/list-subscriptions', ListSubscriptoinRoute);
-app.use('/api/list-invoices', ListInvoicesRoute);
+app.use('/api/invoices', InvoicesRoute);
 
 
 
